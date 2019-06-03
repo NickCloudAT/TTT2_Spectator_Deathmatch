@@ -128,17 +128,6 @@ if CLIENT then
 			local role_text_width = surface.GetTextSize(string.upper(text)) * self.scale
 			local role_scale_multiplier = (self.size.w - self.lpw - 2 * self.pad) / role_text_width
 
-			[[--if calive and cactive and isfunction(self.secondaryRoleInformationFunc) then
-				local secInfoTbl = self.secondaryRoleInformationFunc()
-
-				if secInfoTbl and secInfoTbl.text then
-					surface.SetFont("PureSkinBar")
-
-					local sri_text_width = surface.GetTextSize(string.upper(secInfoTbl.text)) * self.scale
-
-					role_scale_multiplier = (self.size.w - sri_text_width - self.lpw - 2 * self.pad - 3 * self.sri_text_width_padding) / role_text_width
-				end
-			end--]]
 
 			role_scale_multiplier = math.Clamp(role_scale_multiplier, 0.55, 0.85) * self.scale
 
