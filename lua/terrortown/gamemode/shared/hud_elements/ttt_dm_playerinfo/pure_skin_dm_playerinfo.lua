@@ -35,11 +35,11 @@ if CLIENT then
 	-- parameter overwrites end
 
   function HUDELEMENT:ShouldDraw()
-    return LocalPlayer():IsGhost()
+    return LocalPlayer():IsGhost() and LocalPlayer():Alive() or HUDEditor.IsEditing
   end
 
 	function HUDELEMENT:GetDefaults()
-		const_defaults["basepos"] = {x = 10 * self.scale, y = ScrH() - (10 * self.scale + self.size.h)}
+		const_defaults["basepos"] = {x = 380 * self.scale, y = ScrH() - (10 * self.scale + self.size.h)}
 
 		return const_defaults
 	end
@@ -88,6 +88,7 @@ if CLIENT then
 	function HUDELEMENT:Draw()
 		local client = LocalPlayer()
 		local cactiveGhost = client:IsGhost()
+		local calive = client:Alive()
 		local L = GetLang()
 
 		local x2, y2, w2, h2 = self.pos.x, self.pos.y, self.size.w, self.size.h
@@ -110,13 +111,11 @@ if CLIENT then
 		-- draw role icon
 		local rd = client:GetSubRoleData()
 		if rd then
-			local tgt = client:GetObserverTarget()
 
 				util.DrawFilteredTexturedRect(x2 + 4, y2 + 4, self.lpw - 8, self.lpw - 8, watching_icon)
 
 			-- draw role string name
 			local text
-			local round_state = GAMEMODE.round_state
 
 			if cactiveGhost then
 				text = "GHOST"
@@ -125,43 +124,23 @@ if CLIENT then
 			--calculate the scale multplier for role text
 			surface.SetFont("PureSkinRole")
 
-			local role_text_width = surface.GetTextSize(string.upper(text)) * self.scale
-			local role_scale_multiplier = (self.size.w - self.lpw - 2 * self.pad) / role_text_width
+			if cactiveGhost then
+
+				local role_text_width = surface.GetTextSize(string.upper(text)) * self.scale
+				local role_scale_multiplier = (self.size.w - self.lpw - 2 * self.pad) / role_text_width
 
 
-			role_scale_multiplier = math.Clamp(role_scale_multiplier, 0.55, 0.85) * self.scale
+				role_scale_multiplier = math.Clamp(role_scale_multiplier, 0.55, 0.85) * self.scale
 
-			self:AdvancedText(string.upper(text), "PureSkinRole", nx, ry, self:GetDefaultFontColor(self.basecolor), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER, true, Vector(role_scale_multiplier * 0.9, role_scale_multiplier, role_scale_multiplier))
+				self:AdvancedText(string.upper(text), "PureSkinRole", nx, ry, self:GetDefaultFontColor(self.basecolor), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER, true, Vector(role_scale_multiplier * 0.9, role_scale_multiplier, role_scale_multiplier))
+
+			end
 		end
 
 		-- player informations
+		if cactiveGhost then
 
 			-- draw secondary role information
-			if cactiveGhost then
-				local secInfoTbl = self.secondaryRoleInformationFunc()
-
-				if secInfoTbl and secInfoTbl.color and secInfoTbl.text then
-					surface.SetFont("PureSkinBar")
-
-					local sri_text_caps = string.upper(secInfoTbl.text)
-					local sri_text_width = surface.GetTextSize(sri_text_caps) * self.scale
-					local sri_margin_top_bottom = 8 * self.scale
-					local sri_width = sri_text_width + self.sri_text_width_padding * 2
-					local sri_xoffset = w2 - sri_width - self.pad
-
-					local nx2 = x2 + sri_xoffset
-					local ny = y2 + sri_margin_top_bottom
-					local nh = self.lpw - sri_margin_top_bottom * 2
-
-					surface.SetDrawColor(clr(secInfoTbl.color))
-					surface.DrawRect(nx2, ny, sri_width, nh)
-
-					self:AdvancedText(sri_text_caps, "PureSkinBar", nx2 + sri_width * 0.5, ry, self:GetDefaultFontColor(secInfoTbl.color), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, true, self.scale)
-
-					-- draw lines around the element
-					self:DrawLines(nx2, ny, sri_width, nh, secInfoTbl.color.a)
-				end
-			end
 
 			-- draw dark bottom overlay
 			surface.SetDrawColor(0, 0, 0, 90)
@@ -192,12 +171,9 @@ if CLIENT then
 				end
 			end
 
-			-- sprint bar
 			ty = ty + bh + spc
 
-			if GetGlobalBool("ttt2_sprint_enabled", true) then
-				self:DrawBar(nx, ty, bw, sbh, Color(36, 154, 198), client.sprintProgress, self.scale, "")
-			end
+		end
 
 		-- draw lines around the element
 		self:DrawLines(x2, y2, w2, h2, self.basecolor.a)
