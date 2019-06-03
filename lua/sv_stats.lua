@@ -206,6 +206,9 @@ net.Receive("SpecDM_AskStats", function(_, ply)
 		local query = sql.Query(query_str)
 		if not query then return end
 
+		print("DM1: " .. query_str)
+		print("DM2: " .. query)
+
 		local encoded = von.serialize(query)
 		if not encoded then return end
 
