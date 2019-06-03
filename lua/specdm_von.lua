@@ -798,7 +798,7 @@ _s_meta = {
 			return _s_table(data, nil, nil, nil, nil, true, {false})
 		end
 
-		error("vON: You must serialize a table, not a "..type(data))
+		--error("vON: You must serialize a table, not a "..type(data))
 	end
 }
 
