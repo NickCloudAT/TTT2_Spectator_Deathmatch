@@ -506,6 +506,11 @@ hook.Add("TTTBeginRound", "TTTBeginRound_TableGhost", function()
 	end
 end)
 
+hook.Add("TTTEndRound", "TTTEndRound_TableGhost", function()
+	table.Empty(ghosttable)
+	table.Empty(livingtable)
+end)
+
 hook.Add("HUDShouldDraw", "SpecDM_TTTPropSpec", function(name)
 	if name == "TTTPropSpec" and LocalPlayer():IsGhost() and not showalive:GetBool() then
 		return false
