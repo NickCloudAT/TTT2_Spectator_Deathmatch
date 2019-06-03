@@ -87,7 +87,7 @@ if CLIENT then
 
 	function HUDELEMENT:Draw()
 		local client = LocalPlayer()
-		local cactiveGhost = client:Alive() and client:IsGhost()
+		local cactiveGhost = client:IsGhost()
 		local L = GetLang()
 
 		local x2, y2, w2, h2 = self.pos.x, self.pos.y, self.size.w, self.size.h
@@ -135,7 +135,6 @@ if CLIENT then
 		end
 
 		-- player informations
-		if calive then
 
 			-- draw secondary role information
 			if cactiveGhost then
@@ -199,8 +198,6 @@ if CLIENT then
 			if GetGlobalBool("ttt2_sprint_enabled", true) then
 				self:DrawBar(nx, ty, bw, sbh, Color(36, 154, 198), client.sprintProgress, self.scale, "")
 			end
-
-		end
 
 		-- draw lines around the element
 		self:DrawLines(x2, y2, w2, h2, self.basecolor.a)
