@@ -138,7 +138,7 @@ if CLIENT then
 		if calive then
 
 			-- draw secondary role information
-			if cactive and isfunction(self.secondaryRoleInformationFunc) then
+			if cactiveGhost and isfunction(self.secondaryRoleInformationFunc) then
 				local secInfoTbl = self.secondaryRoleInformationFunc()
 
 				if secInfoTbl and secInfoTbl.color and secInfoTbl.text then
