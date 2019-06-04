@@ -24,7 +24,6 @@ util.AddNetworkString("SpecDM_OpenStats")
 util.AddNetworkString("SpecDM_AskOpenStats")
 util.AddNetworkString("SpecDM_QuakeSound")
 util.AddNetworkString("SpecDM_Hitmarker")
-util.AddNetworkString("SpecDM_CreateRagdoll")
 util.AddNetworkString("SpecDM_RespawnTimer")
 
 if SpecDM.QuakeSoundsEnabled then
@@ -212,12 +211,6 @@ hook.Add("EntityTakeDamage", "EntityTakeDamage_SpecDMHitmarker", function(ent, d
 			net.WriteBool(SpecDM.DeadlyHitmarker and dmginfo:GetDamage() > ent:Health())
 			net.Send(att)
 		end
-	end
-end)
-
-hook.Add("DoPlayerDeath", "DoPlayerDeath_SpecDMRagdoll", function(ply)
-	if ply:IsGhost() then
-		ply:CreateRagdoll()
 	end
 end)
 
