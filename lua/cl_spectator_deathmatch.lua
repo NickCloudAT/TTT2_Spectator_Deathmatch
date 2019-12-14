@@ -1,5 +1,4 @@
 include("sh_spectator_deathmatch.lua")
-include("cl_specdm_hud.lua")
 include("vgui/spec_dm_loadout.lua")
 include("cl_stats.lua")
 include("cl_quakesounds.lua")
