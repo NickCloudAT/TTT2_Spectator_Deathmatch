@@ -233,6 +233,7 @@ if not SpecDM.IsScoreboardCustom then
 				self.rowcount = table.Count(self.rows)
 
 				self:PerformLayout()
+				ScoreboardCommands_Add( row )
 			end
 		end
 
@@ -281,98 +282,97 @@ if not SpecDM.IsScoreboardCustom then
 	end)
 end
 
-hook.Add("Initialize", "Initialize_Ghost", function()
+hook.Add("PlayerBindPress", "TTTGHOSTDMBINDS", function(ply, bind, pressed)
+	if not IsValid(ply) then return end
 
-	-- nobody overrides this function anyway
-	function GAMEMODE:PlayerBindPress(ply, bind, pressed)
-		if not IsValid(ply) then return end
+	if bind == "invnext" and pressed then
+		if ply:IsSpec() and not (ply.IsGhost and ply:IsGhost()) then
+			TIPS.Next()
+		else
+			WSWITCH:SelectNext()
+		end
 
-		if bind == "invnext" and pressed then
-			if ply:IsSpec() and not (ply.IsGhost and ply:IsGhost()) then
-				TIPS.Next()
-			else
-				WSWITCH:SelectNext()
+		return true
+	elseif bind == "invprev" and pressed then
+		if ply:IsSpec() and not (ply.IsGhost and ply:IsGhost()) then
+			TIPS.Prev()
+		else
+			WSWITCH:SelectPrev()
+		end
+
+		return true
+	elseif bind == "+attack" then
+		if WSWITCH:PreventAttack() then
+			if not pressed then
+				WSWITCH:ConfirmSelection()
 			end
-
-			return true
-		elseif bind == "invprev" and pressed then
-			if ply:IsSpec() and not (ply.IsGhost and ply:IsGhost()) then
-				TIPS.Prev()
-			else
-				WSWITCH:SelectPrev()
-			end
-
-			return true
-		elseif bind == "+attack" then
-			if WSWITCH:PreventAttack() then
-				if not pressed then
-					WSWITCH:ConfirmSelection()
-				end
-
-				return true
-			end
-		elseif bind == "+sprint" then
-			ply.traitor_gvoice = false
-
-			RunConsoleCommand("tvog", "0")
-
-			return true
-		elseif bind == "+use" and pressed then
-			if ply:IsSpec() then
-				RunConsoleCommand("ttt_spec_use")
-
-				return true
-			elseif TBHUD:PlayerIsFocused() then
-				return TBHUD:UseFocused()
-			end
-		elseif string.sub(bind, 1, 4) == "slot" and pressed then
-			local idx = tonumber(string.sub(bind, 5, -1)) or 1
-
-			if RADIO.Show then
-				RADIO:SendCommand(idx)
-			else
-				WSWITCH:SelectSlot(idx)
-			end
-
-			return true
-		elseif string.find(bind, "zoom") and pressed then
-			RADIO:ShowRadioCommands(not RADIO.Show)
-
-			return true
-		elseif bind == "+voicerecord" then
-			if not VOICE.CanSpeak() then
-				return true
-			end
-		elseif bind == "gm_showteam" and pressed and ply:IsSpec() then
-			local m = VOICE.CycleMuteState()
-
-			RunConsoleCommand("ttt_mute_team", m)
-
-			return true
-		elseif bind == "+duck" and pressed and (ply:IsSpec() and not (ply.IsGhost and ply:IsGhost())) then
-			if not IsValid(ply:GetObserverTarget()) then
-				if GAMEMODE.ForcedMouse then
-					gui.EnableScreenClicker(false)
-
-					GAMEMODE.ForcedMouse = false
-				else
-					gui.EnableScreenClicker(true)
-
-					GAMEMODE.ForcedMouse = true
-				end
-			end
-		elseif bind == "noclip" and pressed then
-			if not GetConVar("sv_cheats"):GetBool() then
-				RunConsoleCommand("ttt_equipswitch")
-
-				return true
-			end
-		elseif (bind == "gmod_undo" or bind == "undo") and pressed then
-			RunConsoleCommand("ttt_dropammo")
 
 			return true
 		end
+	elseif bind == "+sprint" then
+		ply.traitor_gvoice = false
+
+		RunConsoleCommand("tvog", "0")
+
+		return true
+	elseif bind == "+use" and pressed then
+		if ply:IsSpec() then
+			RunConsoleCommand("ttt_spec_use")
+
+			return true
+		elseif TBHUD:PlayerIsFocused() then
+			return TBHUD:UseFocused()
+		end
+	elseif string.sub(bind, 1, 4) == "slot" and pressed then
+		local idx = tonumber(string.sub(bind, 5, -1)) or 1
+
+		if RADIO.Show then
+			RADIO:SendCommand(idx)
+		else
+			WSWITCH:SelectSlot(idx)
+		end
+
+		return true
+	elseif string.find(bind, "zoom") and pressed then
+		RADIO:ShowRadioCommands(not RADIO.Show)
+
+		return true
+	elseif bind == "+voicerecord" then
+		if not VOICE.CanSpeak() then
+			return true
+		end
+	elseif bind == "gm_showteam" and pressed and ply:IsSpec() then
+		local m = VOICE.CycleMuteState()
+
+		RunConsoleCommand("ttt_mute_team", m)
+
+		return true
+	elseif bind == "+duck" and pressed and (ply:IsSpec() and not (ply.IsGhost and ply:IsGhost())) then
+		if not IsValid(ply:GetObserverTarget()) then
+			if GAMEMODE.ForcedMouse then
+				gui.EnableScreenClicker(false)
+
+				GAMEMODE.ForcedMouse = false
+			else
+				gui.EnableScreenClicker(true)
+
+				GAMEMODE.ForcedMouse = true
+			end
+		end
+	elseif bind == "noclip" and pressed then
+		if not GetConVar("sv_cheats"):GetBool() then
+			RunConsoleCommand("ttt_equipswitch")
+
+			return true
+		end
+	elseif (bind == "gmod_undo" or bind == "undo") and pressed then
+		RunConsoleCommand("ttt_dropammo")
+
+		return true
 	end
+end)
+
+hook.Add("Initialize", "Initialize_Ghost", function()
 
 	function ScoreGroup(p)
 		if not IsValid(p) then return - 1 end

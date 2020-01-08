@@ -123,17 +123,17 @@ if CLIENT then
 
 			--calculate the scale multplier for role text
 			surface.SetFont("PureSkinRole")
-
+			
 			if cactiveGhost then
-
+			
 				local role_text_width = surface.GetTextSize(string.upper(text)) * self.scale
 				local role_scale_multiplier = (self.size.w - self.lpw - 2 * self.pad) / role_text_width
 
 
 				role_scale_multiplier = math.Clamp(role_scale_multiplier, 0.55, 0.85) * self.scale
-
-				self:AdvancedText(string.upper(text), "PureSkinRole", nx, ry, self:GetDefaultFontColor(self.basecolor), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER, true, Vector(role_scale_multiplier * 0.9, role_scale_multiplier, role_scale_multiplier))
-
+			
+				draw.AdvancedText(string.upper(text), "PureSkinRole", nx, ry, self:GetDefaultFontColor(self.basecolor), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER, true, Vector(role_scale_multiplier * 0.9, role_scale_multiplier, role_scale_multiplier))
+			
 			end
 		end
 
