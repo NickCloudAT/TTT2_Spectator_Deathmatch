@@ -320,8 +320,6 @@ hook.Add("PlayerBindPress", "TTTGHOSTDMBINDS", function(ply, bind, pressed)
 			RunConsoleCommand("ttt_spec_use")
 
 			return true
-		elseif TBHUD:PlayerIsFocused() then
-			return TBHUD:UseFocused()
 		end
 	elseif string.sub(bind, 1, 4) == "slot" and pressed then
 		local idx = tonumber(string.sub(bind, 5, -1)) or 1
@@ -347,16 +345,12 @@ hook.Add("PlayerBindPress", "TTTGHOSTDMBINDS", function(ply, bind, pressed)
 		RunConsoleCommand("ttt_mute_team", m)
 
 		return true
-	elseif bind == "+duck" and pressed and (ply:IsSpec() and not (ply.IsGhost and ply:IsGhost())) then
+	elseif bind == "+duck" and pressed and ply:IsSpec() then
 		if not IsValid(ply:GetObserverTarget()) then
-			if GAMEMODE.ForcedMouse then
-				gui.EnableScreenClicker(false)
-
-				GAMEMODE.ForcedMouse = false
-			else
-				gui.EnableScreenClicker(true)
-
+			if ply.IsGhost and ply:IsGhost() then
 				GAMEMODE.ForcedMouse = true
+			else
+				GAMEMODE.ForcedMouse = GAMEMODE.ForcedMouse and true or not GAMEMODE.ForcedMouse and false
 			end
 		end
 	elseif bind == "noclip" and pressed then
