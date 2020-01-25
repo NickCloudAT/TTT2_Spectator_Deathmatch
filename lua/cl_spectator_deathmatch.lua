@@ -233,7 +233,9 @@ if not SpecDM.IsScoreboardCustom then
 				self.rowcount = table.Count(self.rows)
 
 				self:PerformLayout()
-				ScoreboardCommands_Add( row )
+				if isfunction(ScoreboardCommands_Add) then
+					ScoreboardCommands_Add( row )
+				end
 			end
 		end
 
