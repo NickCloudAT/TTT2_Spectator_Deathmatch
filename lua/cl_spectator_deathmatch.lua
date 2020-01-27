@@ -324,7 +324,7 @@ hook.Add("PlayerBindPress", "TTTGHOSTDMBINDS", function(ply, bind, pressed)
 			return true
 		end
 	elseif string.sub(bind, 1, 4) == "slot" and pressed then
-		local idx = tonumber(string.sub(bind, 5, -1)) or 1
+		--[[local idx = tonumber(string.sub(bind, 5, -1)) or 1
 
 		if RADIO.Show then
 			RADIO:SendCommand(idx)
@@ -332,7 +332,7 @@ hook.Add("PlayerBindPress", "TTTGHOSTDMBINDS", function(ply, bind, pressed)
 			WSWITCH:SelectSlot(idx)
 		end
 
-		return true
+		return true]]--
 	elseif string.find(bind, "zoom") and pressed then
 		RADIO:ShowRadioCommands(not RADIO.Show)
 
