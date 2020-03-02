@@ -370,26 +370,43 @@ end)
 
 hook.Add("Initialize", "Initialize_Ghost", function()
 
-	function ScoreGroup(p)
-		if not IsValid(p) then return - 1 end
+	function ScoreGroup(ply)
+		if not IsValid(ply) then -- will not match any group panel
+			return -1
+		end
 
-		local group = hook.Call("TTTScoreGroup", nil, p)
+		local group = hook.Call("TTTScoreGroup", nil, ply)
 
-		if group then
+		if group then -- If that hook gave us a group, use it
 			return group
 		end
 
 		local client = LocalPlayer()
 
-		if p:IsGhost() then
-			if not p:GetNWBool("PlayedSRound", false) then
+		if ply:IsGhost() then
+			if not ply:GetNWBool("PlayedSRound", false) then
 				return GROUP_SPEC
 			end
 
-			if p:GetNWBool("body_found", false) then
+			if ply:GetNWBool("body_found", false) then
+				return GROUP_FOUND
+			elseif client:IsSpec() or client:IsActive() or ((GetRoundState() ~= ROUND_ACTIVE) and client:IsTerror()) then
+				return GROUP_NOTFOUND
+			else
+				return GROUP_TERROR
+			end
+		end
+
+		if DetectiveMode() and ply:IsSpec() and not ply:Alive() then
+			if ply:TTT2NETGetBool("body_found", false) then
 				return GROUP_FOUND
 			else
-				if client:IsSpec() or client:IsActiveTraitor() or ((GAMEMODE.round_state ~= ROUND_ACTIVE) and client:IsTerror()) then
+
+				-- To terrorists, missing players show as alive
+				if client:IsSpec()
+				or client:IsActive() and client:HasTeam(TEAM_TRAITOR)
+				or GetRoundState() ~= ROUND_ACTIVE and client:IsTerror()
+				then
 					return GROUP_NOTFOUND
 				else
 					return GROUP_TERROR
@@ -397,19 +414,7 @@ hook.Add("Initialize", "Initialize_Ghost", function()
 			end
 		end
 
-		if DetectiveMode() and p:IsSpec() and p:GetNWBool("PlayedSRound", false) and not p:Alive() then
-			if p:GetNWBool("body_found", false) then
-				return GROUP_FOUND
-			else
-				if client:IsSpec() or client:IsActiveTraitor() or ((GAMEMODE.round_state ~= ROUND_ACTIVE) and client:IsTerror()) then
-					return GROUP_NOTFOUND
-				else
-					return GROUP_TERROR
-				end
-			end
-		end
-
-		return p:IsTerror() and GROUP_TERROR or GROUP_SPEC
+		return ply:IsTerror() and GROUP_TERROR or GROUP_SPEC
 	end
 
 	--[[
