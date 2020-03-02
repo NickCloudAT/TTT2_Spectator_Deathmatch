@@ -390,7 +390,7 @@ hook.Add("Initialize", "Initialize_Ghost", function()
 
 			if ply:GetNWBool("body_found", false) then
 				return GROUP_FOUND
-			elseif client:IsSpec() or client:IsActive() or ((GetRoundState() ~= ROUND_ACTIVE) and client:IsTerror()) then
+			elseif client:IsSpec() or client:IsActiveTraitor() or ((GetRoundState() ~= ROUND_ACTIVE) and client:IsTerror()) then
 				return GROUP_NOTFOUND
 			else
 				return GROUP_TERROR
