@@ -72,7 +72,7 @@ hook.Add("Move", "Move_Ghost", function(ply, mv)
 			slowed = true
 		end
 
-		local mul = hook.Call("TTTPlayerSpeedModifier", GAMEMODE, ply, slowed, mv) or 1
+		local mul = hook.Run("TTTPlayerSpeedModifier", ply, isSlowed, moveData, speedMultiplierModifier) or 1
 		mul = basemul * mul
 
 		mv:SetMaxClientSpeed(mv:GetMaxClientSpeed() * mul)
