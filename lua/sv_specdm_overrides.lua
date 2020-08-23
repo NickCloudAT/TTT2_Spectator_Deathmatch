@@ -192,16 +192,11 @@ hook.Add("Initialize", "Initialize_SpecDM", function()
 		old_SpectatorThink(self, ply)
 	end
 
-	local old_PlayerCanPickupWeapon = GAMEMODE.PlayerCanPickupWeapon
-	function GAMEMODE:PlayerCanPickupWeapon(ply, wep)
-		if not IsValid(ply) or not IsValid(wep) then return end
-
+	hook.Add("PlayerCanPickupWeapon", "TTTSpecDMPickup", function(ply, wep)
 		if ply:IsGhost() then
 			return string.Left(wep:GetClass(), #"weapon_ghost") == "weapon_ghost"
 		end
-
-		return old_PlayerCanPickupWeapon(self, ply, wep)
-	end
+	end)
 
 	local meta = FindMetaTable("Player")
 
