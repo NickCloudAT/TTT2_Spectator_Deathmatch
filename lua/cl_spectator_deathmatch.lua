@@ -382,14 +382,13 @@ hook.Add("Initialize", "Initialize_Ghost", function()
                 return GROUP_FOUND
             else
                 -- To terrorists, missing players show as alive
-                if client:IsSpec() or client:IsActive() and client:HasTeam(TEAM_TRAITOR) or GetRoundState() ~= ROUND_ACTIVE and client:IsTerror() then
+                if client:IsSpec() or client:IsActive() and client:GetTeam() == TEAM_TRAITOR or GetRoundState() ~= ROUND_ACTIVE and client:IsTerror() then
                     return GROUP_NOTFOUND
                 else
                     return GROUP_TERROR
                 end
             end
         end
-
         return ply:IsTerror() and GROUP_TERROR or GROUP_SPEC
     end
 
