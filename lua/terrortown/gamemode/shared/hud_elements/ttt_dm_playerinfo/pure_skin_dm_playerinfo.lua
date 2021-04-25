@@ -15,11 +15,11 @@ if CLIENT then
         },
         size = {
             w = 365,
-            h = 190 -- fix 4 for hud position
+            h = 146 -- fix 4 for hud position
         },
         minsize = {
             w = 240,
-            h = 190 -- fix 4 for hud postion
+            h = 146 -- fix 4 for hud postion
         }
     }
 
