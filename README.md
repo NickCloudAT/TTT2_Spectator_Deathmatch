@@ -3,7 +3,7 @@ TTT2 Spectator Deathmatch
 
 Spectator Deathmatch for Trouble in Terrorist Town 2 (a Garry's Mod gamemode)
 
-**THIS IS ONLY FOR TTT2.**
+**THIS IS ONLY FOR TTT2**
 
 For more information look at the workshop page: https://steamcommunity.com/sharedfiles/filedetails/?id=1997666028
 
