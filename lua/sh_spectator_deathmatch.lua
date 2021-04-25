@@ -70,12 +70,6 @@ hook.Add("Move", "Move_Ghost", function(ply, mv)
 
         local mul = hook.Call("TTTPlayerSpeedModifier", GAMEMODE, ply, slowed, mv, noLag) or 1
         mul = basemul * mul / noLag[1] * 1.5
-
-        -- fix 1 for speedmodifier (shinigami speed fix)
-        if ply:GetSubRole() == ROLE_SHINIGAMI then
-            mul = basemul * mul * noLag[1] / 2
-        end
-
         mv:SetMaxClientSpeed(mv:GetMaxClientSpeed() * mul)
         mv:SetMaxSpeed(mv:GetMaxSpeed() * mul)
     end
