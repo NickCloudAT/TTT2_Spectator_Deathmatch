@@ -3,7 +3,7 @@ if SERVER then
 end
 
 SWEP.HoldType = "melee"
-SWEP.PrintName = "crowbar_name"
+SWEP.PrintName = "Ghost Crowbar"
 SWEP.Slot = 0
 SWEP.Icon = "vgui/ttt/icon_cbar"
 SWEP.ViewModelFOV = 54
