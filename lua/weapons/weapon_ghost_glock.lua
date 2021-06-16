@@ -1,7 +1,7 @@
 if SERVER then
     AddCSLuaFile()
 else
-    SWEP.PrintName = "Glock"
+    SWEP.PrintName = "Ghost Glock"
     SWEP.Slot = 1
     SWEP.Icon = "vgui/ttt/icon_glock"
     SWEP.IconLetter = "c"
