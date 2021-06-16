@@ -1,7 +1,7 @@
 if SERVER then
     AddCSLuaFile()
 else
-    SWEP.PrintName = "Deagle"
+    SWEP.PrintName = "Ghost Deagle"
     SWEP.Slot = 1
     SWEP.ViewModelFOV = 54
     SWEP.ViewModelFlip = false
