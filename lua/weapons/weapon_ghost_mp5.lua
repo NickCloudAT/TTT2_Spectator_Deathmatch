@@ -5,7 +5,7 @@ if SERVER then
         resource.AddFile("materials/vgui/spec_dm/icon_sdm_mp5.vmt")
     end
 else
-    SWEP.PrintName = "MP5"
+    SWEP.PrintName = "Ghost MP5"
     SWEP.Slot = 2
     SWEP.Icon = "vgui/spec_dm/icon_sdm_mp5"
     SWEP.IconLetter = "x"

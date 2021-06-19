@@ -11,6 +11,8 @@ SWEP.Kind = WEAPON_NONE
 -- Example: SWEP.CanBuy = {ROLE_TRAITOR}
 -- (just setting to nil here to document its existence, don't make this buyable)
 SWEP.CanBuy = nil
+-- By default a weapon is not buyable. Set this to false if the weapon should be buyable.
+SWEP.notBuyable = true
 
 if CLIENT then
     -- If this is a buyable weapon (ie. CanBuy is not nil) EquipMenuData must be

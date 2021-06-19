@@ -5,7 +5,7 @@ if SERVER then
         resource.AddFile("materials/vgui/spec_dm/icon_sdm_galil.vmt")
     end
 else
-    SWEP.PrintName = "Galil"
+    SWEP.PrintName = "Ghost Galil"
     SWEP.Slot = 2
     SWEP.ViewModelFlip = false
     SWEP.ViewModelFOV = 72

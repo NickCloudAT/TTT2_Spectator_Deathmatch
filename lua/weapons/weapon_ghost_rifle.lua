@@ -1,7 +1,7 @@
 if SERVER then
     AddCSLuaFile()
 else
-    SWEP.PrintName = "rifle_name"
+    SWEP.PrintName = "Ghost Rifle"
     SWEP.Slot = 2
     SWEP.ViewModelFlip = false
     SWEP.ViewModelFOV = 54

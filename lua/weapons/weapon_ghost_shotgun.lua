@@ -1,7 +1,7 @@
 if SERVER then
     AddCSLuaFile()
 else
-    SWEP.PrintName = "shotgun_name"
+    SWEP.PrintName = "Ghost Shotgun"
     SWEP.Slot = 2
     SWEP.Icon = "vgui/ttt/icon_shotgun"
     SWEP.ViewModelFlip = false

@@ -5,7 +5,7 @@ if SERVER then
         resource.AddFile("materials/vgui/spec_dm/icon_sdm_awp.vmt")
     end
 else
-    SWEP.PrintName = "AWP"
+    SWEP.PrintName = "Ghost AWP"
     SWEP.Slot = 2
     SWEP.Icon = "vgui/spec_dm/icon_sdm_awp"
     SWEP.IconLetter = "r"

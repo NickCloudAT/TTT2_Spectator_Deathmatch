@@ -5,7 +5,7 @@ if SERVER then
         resource.AddFile("materials/vgui/spec_dm/icon_sdm_ak47.vmt")
     end
 else
-    SWEP.PrintName = "AK47"
+    SWEP.PrintName = "Ghost AK47"
     SWEP.Slot = 2
     SWEP.ViewModelFOV = 72
     SWEP.ViewModelFlip = true
