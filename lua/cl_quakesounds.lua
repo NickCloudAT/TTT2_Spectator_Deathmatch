@@ -1,3 +1,5 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
+
 surface.CreateFont("SpecDM_Quake", {
     font = "Arial",
     size = 24,

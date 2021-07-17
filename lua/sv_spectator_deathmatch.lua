@@ -1,3 +1,4 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
 AddCSLuaFile("cl_spectator_deathmatch.lua")
 AddCSLuaFile("sh_spectator_deathmatch.lua")
 AddCSLuaFile("specdm_config.lua")

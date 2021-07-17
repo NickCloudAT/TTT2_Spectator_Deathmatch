@@ -1,3 +1,5 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
+
 -- Chat commands
 SpecDM.Commands = {"!dm", "!deathmatch", "!specdm"}
 

@@ -1,3 +1,4 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
 local old_concommandAdd = concommand.Add
 
 concommand.Add = function(command, func, ...)

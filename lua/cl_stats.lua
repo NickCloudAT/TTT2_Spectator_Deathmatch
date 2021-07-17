@@ -1,3 +1,5 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
+
 surface.CreateFont("SpecDM_Page", {
     font = "DermaDefault",
     size = 18

@@ -1,3 +1,4 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
 include("sh_spectator_deathmatch.lua")
 include("vgui/spec_dm_loadout.lua")
 include("cl_stats.lua")
@@ -389,6 +390,7 @@ hook.Add("Initialize", "Initialize_Ghost", function()
                 end
             end
         end
+
         return ply:IsTerror() and GROUP_TERROR or GROUP_SPEC
     end
 

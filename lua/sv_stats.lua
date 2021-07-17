@@ -1,3 +1,5 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
+
 local function encode_weapons(tbl)
     local to_implode = {}
 

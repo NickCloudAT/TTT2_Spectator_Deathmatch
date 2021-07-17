@@ -1,3 +1,5 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
+
 local function SpecDM_SendQuake(ply)
     if not tonumber(ply.specdm_killrows) or not tonumber(ply.specdm_close_kills) then return end
     net.Start("SpecDM_QuakeSound")

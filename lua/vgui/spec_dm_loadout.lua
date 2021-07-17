@@ -1,3 +1,5 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
+
 local PANEL = {
     Start = 1,
     End = 5

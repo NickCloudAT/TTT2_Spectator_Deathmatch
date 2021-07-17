@@ -1,3 +1,4 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
 include("specdm_config.lua")
 include("specdm_von.lua")
 
