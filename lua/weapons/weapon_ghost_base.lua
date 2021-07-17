@@ -1,3 +1,4 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
 -- Custom weapon base, used to derive from CS one, still very similar
 AddCSLuaFile()
 ---- TTT SPECIAL EQUIPMENT FIELDS

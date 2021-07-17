@@ -1,3 +1,4 @@
+if engine.ActiveGamemode() ~= "terrortown" then return end
 -- TTT Spectator Deathmatch Copyright (C) 2015-2018 Ismail Ouazzany
 -- This program comes with ABSOLUTELY NO WARRANTY; for details view LICENSE.
 -- GitHub Repository:
