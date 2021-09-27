@@ -115,7 +115,7 @@ net.Receive("SpecDM_QuakeSound", function()
         label_3:SizeToContents()
         label_3:SetTextColor(Color(200, 42, 42, 255))
         local x3 = surface.GetTextSize(tbl[3])
-        local text_4 = kills <= 9 and "!" or ", someone kill them!!"
+        local text_4 = kills <= 9 and "!" or ", someone kill him!!"
         label_4 = vgui.Create("DLabel")
         label_4:SetText(text_4)
         label_4:SetFont("SpecDM_Quake")
@@ -126,10 +126,10 @@ net.Receive("SpecDM_QuakeSound", function()
         local label_1_x = ScrW() / 2 - total_x / 2
         local label_2_x = label_1_x + x1
         local label_3_x = label_2_x + x2
-        label_1:SetPos(label_1_x, 40)
-        label_2:SetPos(label_2_x, 40)
-        label_3:SetPos(label_3_x, 40)
-        label_4:SetPos(label_3_x + x3, 40)
+        label_1:SetPos(label_1_x, 210)
+        label_2:SetPos(label_2_x, 210)
+        label_3:SetPos(label_3_x, 210)
+        label_4:SetPos(label_3_x + x3, 210)
 
         timer.Create("SpecDM_1", 5, 1, function()
             playing_quake = false
@@ -169,9 +169,9 @@ net.Receive("SpecDM_QuakeSound", function()
             local total_x2 = x12 + x22 + x32
             local label_5_x = ScrW() / 2 - total_x2 / 2
             local label_6_x = label_5_x + x12
-            label_5:SetPos(label_5_x, 70)
-            label_6:SetPos(label_6_x, 70)
-            label_7:SetPos(label_6_x + x22, 70)
+            label_5:SetPos(label_5_x, 240)
+            label_6:SetPos(label_6_x, 240)
+            label_7:SetPos(label_6_x + x22, 240)
 
             timer.Create("SpecDM_2", 5, 1, function()
                 label_5:Remove()
@@ -211,10 +211,10 @@ net.Receive("SpecDM_QuakeSound", function()
         local label_1_x = ScrW() / 2 - total_x / 2
         local label_2_x = label_1_x + x1
         local label_3_x = label_2_x + x2
-        label_1:SetPos(label_1_x, 40)
-        label_2:SetPos(label_2_x, 40)
-        label_3:SetPos(label_3_x, 40)
-        label_4:SetPos(label_3_x + x3, 40)
+        label_1:SetPos(label_1_x, 210)
+        label_2:SetPos(label_2_x, 210)
+        label_3:SetPos(label_3_x, 210)
+        label_4:SetPos(label_3_x + x3, 210)
 
         timer.Create("SpecDM_3", 5, 1, function()
             playing_quake = false
