@@ -3,16 +3,22 @@ if engine.ActiveGamemode() ~= "terrortown" then return end
 if SERVER then
     AddCSLuaFile()
 else
-    SWEP.PrintName = "Ghost Glock"
+    SWEP.EquipMenuData = {
+        type = "item_weapon",
+        name = "ttt2_spectator_deathmatch_weapon_6",
+        desc = ""
+    }
+
+    SWEP.PrintName = LANG.GetTranslation("ttt2_spectator_deathmatch_weapon_6")
     SWEP.Slot = 1
     SWEP.Icon = "vgui/ttt/icon_glock"
     SWEP.IconLetter = "c"
 end
 
+SWEP.Base = "weapon_ghost_base"
 SWEP.HoldType = "pistol"
 SWEP.Kind = WEAPON_PISTOL
 SWEP.WeaponID = AMMO_GLOCK
-SWEP.Base = "weapon_ghost_base"
 SWEP.Primary.Recoil = 0.7
 SWEP.Primary.Damage = 21
 SWEP.Primary.Delay = 0.15

@@ -29,7 +29,7 @@ local tbl_combos = {
 
 local tbl_combos_2 = {
     [2] = {"doublekill.mp3", "just got a ", "Double kill"},
-    [3] = {"triplekill.mp3", "just a ", "Triple kill"},
+    [3] = {"triplekill.mp3", "just got a ", "Triple kill"},
     [4] = {"ultrakill.mp3", "just got an ", "Ultrakill"},
     [5] = {"rampage.mp3", "is on a ", "Rampage"}
 }

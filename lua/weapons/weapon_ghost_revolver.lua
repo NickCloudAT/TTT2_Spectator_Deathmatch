@@ -3,7 +3,13 @@ if engine.ActiveGamemode() ~= "terrortown" then return end
 if SERVER then
     AddCSLuaFile()
 else
-    SWEP.PrintName = "Ghost Deagle"
+    SWEP.EquipMenuData = {
+        type = "item_weapon",
+        name = "ttt2_spectator_deathmatch_weapon_12",
+        desc = ""
+    }
+
+    SWEP.PrintName = LANG.GetTranslation("ttt2_spectator_deathmatch_weapon_12")
     SWEP.Slot = 1
     SWEP.ViewModelFOV = 54
     SWEP.ViewModelFlip = false
@@ -11,9 +17,8 @@ else
     SWEP.IconLetter = "f"
 end
 
-SWEP.HoldType = "pistol"
-SWEP.Author = "TTT"
 SWEP.Base = "weapon_ghost_base"
+SWEP.HoldType = "pistol"
 SWEP.Spawnable = true
 SWEP.AutoSpawnable = false
 SWEP.Kind = WEAPON_PISTOL

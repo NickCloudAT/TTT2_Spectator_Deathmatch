@@ -7,16 +7,22 @@ if SERVER then
         resource.AddFile("materials/vgui/spec_dm/icon_sdm_revolver.vmt")
     end
 else
-    SWEP.PrintName = "Ghost Magnum"
+    SWEP.EquipMenuData = {
+        type = "item_weapon",
+        name = "ttt2_spectator_deathmatch_weapon_9",
+        desc = ""
+    }
+
+    SWEP.PrintName = LANG.GetTranslation("ttt2_spectator_deathmatch_weapon_9")
     SWEP.Slot = 1
     SWEP.ViewModelFlip = false
     SWEP.ViewModelFOV = 54
     SWEP.Icon = "vgui/spec_dm/icon_sdm_revolver"
 end
 
+SWEP.Base = "weapon_ghost_base"
 SWEP.HoldType = "pistol"
 SWEP.Tracer = "AR2Tracer"
-SWEP.Base = "weapon_ghost_base"
 SWEP.Spawnable = true
 SWEP.AdminSpawnable = true
 SWEP.Kind = WEAPON_PISTOL

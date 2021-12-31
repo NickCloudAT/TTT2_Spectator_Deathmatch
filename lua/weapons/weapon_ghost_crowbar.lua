@@ -2,20 +2,27 @@ if engine.ActiveGamemode() ~= "terrortown" then return end
 
 if SERVER then
     AddCSLuaFile()
+else
+    SWEP.EquipMenuData = {
+        type = "item_weapon",
+        name = "ttt2_spectator_deathmatch_weapon_4",
+        desc = ""
+    }
+
+    SWEP.PrintName = LANG.GetTranslation("ttt2_spectator_deathmatch_weapon_4")
+    SWEP.Slot = 0
+    SWEP.ViewModelFlip = false
+    SWEP.ViewModelFOV = 54
+    SWEP.Icon = "vgui/ttt/icon_cbar"
 end
 
-SWEP.HoldType = "melee"
-SWEP.PrintName = "Ghost Crowbar"
-SWEP.Slot = 0
-SWEP.Icon = "vgui/ttt/icon_cbar"
-SWEP.ViewModelFOV = 54
-SWEP.UseHands = true
 SWEP.Base = "weapon_tttbase"
+SWEP.HoldType = "melee"
+SWEP.UseHands = true
 SWEP.ViewModel = "models/weapons/c_crowbar.mdl"
 SWEP.WorldModel = "models/weapons/w_crowbar.mdl"
 SWEP.Weight = 5
 SWEP.DrawCrosshair = false
-SWEP.ViewModelFlip = false
 SWEP.Primary.Damage = 20
 SWEP.Primary.ClipSize = -1
 SWEP.Primary.DefaultClip = -1
