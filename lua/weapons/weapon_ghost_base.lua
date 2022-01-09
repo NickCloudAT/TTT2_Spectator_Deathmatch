@@ -194,6 +194,12 @@ if CLIENT then
     end
 end
 
+-- This hook can be used by swep addons to populate the equipment settings page
+-- with custom convars. The parent is the submenu, where a new form has to
+-- be added.
+function SWEP:AddToSettingsMenu(parent)
+end
+
 -- Shooting functions largely copied from weapon_cs_base
 function SWEP:PrimaryAttack(worldsnd)
     self:SetNextSecondaryFire(CurTime() + self.Primary.Delay)

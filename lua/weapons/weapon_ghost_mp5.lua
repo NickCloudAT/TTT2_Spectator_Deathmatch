@@ -7,14 +7,20 @@ if SERVER then
         resource.AddFile("materials/vgui/spec_dm/icon_sdm_mp5.vmt")
     end
 else
-    SWEP.PrintName = "Ghost MP5"
+    SWEP.EquipMenuData = {
+        type = "item_weapon",
+        name = "ttt2_spectator_deathmatch_weapon_10",
+        desc = ""
+    }
+
+    SWEP.PrintName = LANG.GetTranslation("ttt2_spectator_deathmatch_weapon_10")
     SWEP.Slot = 2
     SWEP.Icon = "vgui/spec_dm/icon_sdm_mp5"
     SWEP.IconLetter = "x"
 end
 
-SWEP.HoldType = "ar2"
 SWEP.Base = "weapon_ghost_base"
+SWEP.HoldType = "ar2"
 SWEP.Kind = WEAPON_HEAVY
 SWEP.WeaponID = AMMO_MP5
 SWEP.Primary.Damage = 19

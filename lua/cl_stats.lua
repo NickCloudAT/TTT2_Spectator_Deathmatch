@@ -14,7 +14,7 @@ local function OpenStats()
     Stats = vgui.Create("DFrame")
     Stats:SetPos(50, 50)
     Stats:SetSize(620, 400)
-    Stats:SetTitle("TTT Spectator Deathmatch Statistics")
+    Stats:SetTitle(LANG.TryTranslation("ttt2_spectator_deathmatch_text_21"))
     Stats:MakePopup()
     Stats:Center()
     local PropertySheet = vgui.Create("DPropertySheet", Stats)
@@ -22,11 +22,11 @@ local function OpenStats()
     PropertySheet:SetSize(610, 360)
     local General = vgui.Create("DScrollPanel")
     local General_Search = vgui.Create("DTextEntry")
-    General_Search:SetText("Search player...")
+    General_Search:SetText(LANG.TryTranslation("ttt2_spectator_deathmatch_text_22"))
     General_Search:SetSize(535, 20)
 
     General_Search.OnGetFocus = function(self)
-        if self:GetValue() == "Search player..." and not self.Focused then
+        if self:GetValue() == LANG.TryTranslation("ttt2_spectator_deathmatch_text_22") and not self.Focused then
             self.Focused = true
             self:SetText("")
         end
@@ -38,7 +38,7 @@ local function OpenStats()
 
     General_Search.GetRealValue = function(self)
         local value = self:GetValue()
-        if not value or value == "" or (value == "Search player..." and not self.Focused) then return false end
+        if not value or value == "" or (value == LANG.TryTranslation("ttt2_spectator_deathmatch_text_22") and not self.Focused) then return false end
 
         return value
     end
@@ -46,7 +46,7 @@ local function OpenStats()
     General:AddItem(General_Search)
     local General_SearchButton = vgui.Create("DButton", General)
     General_SearchButton:SetSize(60, 20)
-    General_SearchButton:SetText("Search")
+    General_SearchButton:SetText(LANG.TryTranslation("ttt2_spectator_deathmatch_text_23"))
     General_SearchButton:SetPos(534, 0)
 
     General_SearchButton.DoClick = function()
@@ -65,15 +65,15 @@ local function OpenStats()
     end
 
     local General_First
-    General_ListView:AddColumn("Player")
-    General_ListView:AddColumn("Kills")
-    General_ListView:AddColumn("Top kills in a row")
-    General_ListView:AddColumn("Deaths")
-    General_ListView:AddColumn("Time in DM (h)")
-    General_ListView:AddColumn("Time alive (h)")
+    General_ListView:AddColumn(LANG.TryTranslation("ttt2_spectator_deathmatch_text_24"))
+    General_ListView:AddColumn(LANG.TryTranslation("ttt2_spectator_deathmatch_text_25"))
+    General_ListView:AddColumn(LANG.TryTranslation("ttt2_spectator_deathmatch_text_26"))
+    General_ListView:AddColumn(LANG.TryTranslation("ttt2_spectator_deathmatch_text_27"))
+    General_ListView:AddColumn(LANG.TryTranslation("ttt2_spectator_deathmatch_text_28"))
+    General_ListView:AddColumn(LANG.TryTranslation("ttt2_spectator_deathmatch_text_29"))
     General:AddItem(General_ListView)
     local General_Previous = vgui.Create("DButton", General)
-    General_Previous:SetText("Previous")
+    General_Previous:SetText(LANG.TryTranslation("ttt2_spectator_deathmatch_text_30"))
     General_Previous:SetSize(70, 25)
     General_Previous:SetPos(35, 298)
     General_Previous:SetEnabled(false)
@@ -104,7 +104,7 @@ local function OpenStats()
 
     local General_Last
     local General_Next = vgui.Create("DButton", General)
-    General_Next:SetText("Next")
+    General_Next:SetText(LANG.TryTranslation("ttt2_spectator_deathmatch_text_31"))
     General_Next:SetSize(70, 25)
     General_Next:SetPos(489, 298)
 
@@ -188,7 +188,7 @@ local function OpenStats()
         end
     end
 
-    PropertySheet:AddSheet("General Statistics", General, "icon16/group.png")
+    PropertySheet:AddSheet(LANG.TryTranslation("ttt2_spectator_deathmatch_text_5"), General, "icon16/group.png")
 
     net.Receive("SpecDM_SendStats", function()
         local to_update = net.ReadUInt(1) == 1
@@ -232,15 +232,15 @@ local function OpenStats()
     end)
 
     local Weapon_stats = vgui.Create("DListView")
-    Weapon_stats:AddColumn("Weapon name")
-    Weapon_stats:AddColumn("Number of kills")
+    Weapon_stats:AddColumn(LANG.TryTranslation("ttt2_spectator_deathmatch_text_32"))
+    Weapon_stats:AddColumn(LANG.TryTranslation("ttt2_spectator_deathmatch_text_33"))
 
     for k, v in pairs(weapons) do
         local name = weapon_tbl[k] and weapon_tbl[k] or k
         Weapon_stats:AddLine(name, v)
     end
 
-    PropertySheet:AddSheet("Your weapon statistics", Weapon_stats, "icon16/gun.png")
+    PropertySheet:AddSheet(LANG.TryTranslation("ttt2_spectator_deathmatch_text_34"), Weapon_stats, "icon16/gun.png")
     SpecDM_UpdateStats(true, false)
     SpecDM_UpdateStats(false, false)
 end

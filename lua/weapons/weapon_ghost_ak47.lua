@@ -7,7 +7,13 @@ if SERVER then
         resource.AddFile("materials/vgui/spec_dm/icon_sdm_ak47.vmt")
     end
 else
-    SWEP.PrintName = "Ghost AK47"
+    SWEP.EquipMenuData = {
+        type = "item_weapon",
+        name = "ttt2_spectator_deathmatch_weapon_1",
+        desc = ""
+    }
+
+    SWEP.PrintName = LANG.GetTranslation("ttt2_spectator_deathmatch_weapon_1")
     SWEP.Slot = 2
     SWEP.ViewModelFOV = 72
     SWEP.ViewModelFlip = true

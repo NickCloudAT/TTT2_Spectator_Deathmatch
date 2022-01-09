@@ -68,7 +68,7 @@ net.Receive("SpecDM_GhostJoin", function()
     end
 
     if not SpecDM.EnableJoinMessages then return end
-    chat.AddText(Color(255, 128, 0), ply:Nick() .. " has ", joined and "joined" or "left", " the deathmatch!")
+    chat.AddText(Color(255, 128, 0), ply:Nick() .. LANG.TryTranslation("ttt2_spectator_deathmatch_text_join_1.1"), joined and LANG.TryTranslation("ttt2_spectator_deathmatch_text_join_1.2") or LANG.TryTranslation("ttt2_spectator_deathmatch_text_join_1.3"), LANG.TryTranslation("ttt2_spectator_deathmatch_text_join_1.4"))
 end)
 
 local emitter
@@ -213,7 +213,7 @@ if not SpecDM.IsScoreboardCustom then
         end
 
         local t = vgui.Create("TTTScoreGroup", can)
-        t:SetGroupInfo("Spectator Deathmatch", Color(255, 127, 39, 100), GROUP_DEATHMATCH)
+        t:SetGroupInfo(LANG.TryTranslation("ttt2_spectator_deathmatch_text_12"), Color(255, 127, 39, 100), GROUP_DEATHMATCH)
         pg[GROUP_DEATHMATCH] = t
     end)
 
@@ -512,14 +512,14 @@ hook.Add("TTTSettingsTabs", "SpecDM_TTTSettingsTab", function(dtabs)
     if SpecDM.LoadoutEnabled then
         local primary_loadout = vgui.Create("SpecDM_LoadoutPanel")
         primary_loadout.cvar = "ttt_specdm_primaryweapon"
-        primary_loadout:SetCategory("Primary weapons")
+        primary_loadout:SetCategory(LANG.TryTranslation("ttt2_spectator_deathmatch_text_3"))
         primary_loadout:SetWeapons(SpecDM.Ghost_weapons.primary)
         primary_loadout:SetSize(550, 50)
         primary_loadout:SetPos(10, 10)
         dsettings:AddItem(primary_loadout)
         local secondary_loadout = vgui.Create("SpecDM_LoadoutPanel")
         secondary_loadout.cvar = "ttt_specdm_secondaryweapon"
-        secondary_loadout:SetCategory("Secondary weapons")
+        secondary_loadout:SetCategory(LANG.TryTranslation("ttt2_spectator_deathmatch_text_4"))
         secondary_loadout:SetWeapons(SpecDM.Ghost_weapons.secondary)
         secondary_loadout:SetSize(550, 50)
         secondary_loadout:SetPos(10, 140)
@@ -527,22 +527,22 @@ hook.Add("TTTSettingsTabs", "SpecDM_TTTSettingsTab", function(dtabs)
     end
 
     local dgui = vgui.Create("DForm", dsettings)
-    dgui:SetName("General settings")
+    dgui:SetName(LANG.TryTranslation("ttt2_spectator_deathmatch_text_5"))
 
     if not SpecDM.ForceDeathmatch then
-        dgui:CheckBox("Enable autoswitch", "ttt_specdm_autoswitch")
+        dgui:CheckBox(LANG.TryTranslation("ttt2_spectator_deathmatch_text_6"), "ttt_specdm_autoswitch")
     else
-        dgui:CheckBox("Always go to deathmatch mode after dying", "ttt_specdm_forcedeathmatch")
+        dgui:CheckBox(LANG.TryTranslation("ttt2_spectator_deathmatch_text_7"), "ttt_specdm_forcedeathmatch")
     end
 
-    dgui:CheckBox("Enable Quake sounds + texts", "ttt_specdm_quakesounds")
-    dgui:CheckBox("Show alive players", "ttt_specdm_showaliveplayers")
-    dgui:CheckBox("Enable the color effect", "ttt_specdm_enablecoloreffect")
-    dgui:CheckBox("Enable the hitmarker", "ttt_specdm_hitmarker")
+    dgui:CheckBox(LANG.TryTranslation("ttt2_spectator_deathmatch_text_8"), "ttt_specdm_quakesounds")
+    dgui:CheckBox(LANG.TryTranslation("ttt2_spectator_deathmatch_text_9"), "ttt_specdm_showaliveplayers")
+    dgui:CheckBox(LANG.TryTranslation("ttt2_spectator_deathmatch_text_10"), "ttt_specdm_enablecoloreffect")
+    dgui:CheckBox(LANG.TryTranslation("ttt2_spectator_deathmatch_text_11"), "ttt_specdm_hitmarker")
     dgui:SetSize(555, 50)
     dgui:SetPos(10, 270)
     dsettings:AddItem(dgui)
-    dtabs:AddSheet("Spectator Deathmatch", dsettings, "icon16/gun.png", false, false, "Spectator deathmatch related settings")
+    dtabs:AddSheet(LANG.TryTranslation("ttt2_spectator_deathmatch_text_12"), dsettings, "icon16/gun.png", false, false, LANG.TryTranslation("ttt2_spectator_deathmatch_text_13"))
 end)
 
 net.Receive("SpecDM_Autoswitch", function()
@@ -554,16 +554,16 @@ net.Receive("SpecDM_Autoswitch", function()
     elseif not SpecDM.ForceDeathmatch and SpecDM.PopUp then
         local frame = vgui.Create("DFrame")
         frame:SetSize(250, 120)
-        frame:SetTitle("Spectator Deathmatch")
+        frame:SetTitle(LANG.TryTranslation("ttt2_spectator_deathmatch_text_12"))
         frame:Center()
         local reason = vgui.Create("DLabel", frame)
-        reason:SetText("You can play while you are dead!")
+        reason:SetText(LANG.TryTranslation("ttt2_spectator_deathmatch_text_14"))
         reason:SizeToContents()
         reason:SetPos(5, 32)
         local report = vgui.Create("DButton", frame)
         report:SetPos(5, 55)
         report:SetSize(240, 25)
-        report:SetText("Join the Spectator Deathmatch")
+        report:SetText(LANG.TryTranslation("ttt2_spectator_deathmatch_text_15"))
 
         report.DoClick = function()
             RunConsoleCommand("say_team", SpecDM.Commands[1])
@@ -577,7 +577,7 @@ net.Receive("SpecDM_Autoswitch", function()
         local close = vgui.Create("DButton", frame)
         close:SetPos(5, 85)
         close:SetSize(240, 25)
-        close:SetText("No, stay as a spectator")
+        close:SetText(LANG.TryTranslation("ttt2_spectator_deathmatch_text_16"))
 
         close.DoClick = function()
             frame:Close()
@@ -591,7 +591,7 @@ net.Receive("SpecDM_Autoswitch", function()
     end
 
     if SpecDM.DisplayMessage and not spawned then
-        chat.AddText(Color(255, 62, 62), "[DM] ", color_white, "You've died! Type ", Color(98, 176, 255), SpecDM.Commands[1], COLOR_WHITE, " to enter deathmatch mode and ", Color(255, 62, 62), "keep killing", COLOR_WHITE, "!")
+        chat.AddText(Color(255, 62, 62), "[DM] ", color_white, LANG.TryTranslation("ttt2_spectator_deathmatch_text_17.1"), Color(98, 176, 255), SpecDM.Commands[1], COLOR_WHITE, LANG.TryTranslation("ttt2_spectator_deathmatch_text_17.2"), Color(255, 62, 62), LANG.TryTranslation("ttt2_spectator_deathmatch_text_17.3"), COLOR_WHITE, "!")
         -- Now this will say !dm instead of !deathmatch. (see specdm_config.lua)
     end
 end)
@@ -629,15 +629,15 @@ hook.Add("HUDPaint", "HUDPaint_SpecDM", function()
     if autorespawntime ~= -2 then
         if SpecDM.AutomaticRespawnTime > 0 then
             local rtime = math.Round(autorespawntime - CurTime())
-            draw.DrawText("Press a key to respawn!\nYou will be automaticly respawned in " .. rtime .. " second" .. (rtime ~= 1 and "s" or ""), "Trebuchet24", x, y, COLOR_WHITE, TEXT_ALIGN_CENTER)
+            draw.DrawText(LANG.TryTranslation("ttt2_spectator_deathmatch_text_18.1") .. rtime .. LANG.TryTranslation("ttt2_spectator_deathmatch_text_18.2") .. (rtime ~= 1 and LANG.TryTranslation("ttt2_spectator_deathmatch_text_18.3") or ""), "Trebuchet24", x, y, COLOR_WHITE, TEXT_ALIGN_CENTER)
         else
-            draw.DrawText("Press a key to respawn!", "Trebuchet24", x, y, COLOR_WHITE, TEXT_ALIGN_CENTER)
+            draw.DrawText(LANG.TryTranslation("ttt2_spectator_deathmatch_text_19"), "Trebuchet24", x, y, COLOR_WHITE, TEXT_ALIGN_CENTER)
         end
     elseif respawntime ~= -2 then
         local waittime = math.Round(respawntime - CurTime())
 
         if waittime > -1 then
-            draw.DrawText("You need to wait " .. waittime .. " second(s) before you can respawn", "Trebuchet24", x, y, COLOR_WHITE, TEXT_ALIGN_CENTER)
+            draw.DrawText(LANG.TryTranslation("ttt2_spectator_deathmatch_text_20.1") .. waittime .. LANG.TryTranslation("ttt2_spectator_deathmatch_text_20.2"), "Trebuchet24", x, y, COLOR_WHITE, TEXT_ALIGN_CENTER)
         end
     end
 end)
