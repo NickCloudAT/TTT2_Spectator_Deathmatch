@@ -317,8 +317,10 @@ hook.Add("PlayerBindPress", "TTTGHOSTDMBINDS", function(ply, bind, pressed)
 
             return true
         end
+	
+    --[[
     elseif string.sub(bind, 1, 4) == "slot" and pressed then
-        local idx = tonumber(string.sub(bind, 5, -1)) or 1 -- fix 3 for unused elseif statement
+        local idx = tonumber(string.sub(bind, 5, -1)) or 1
 
         if RADIO.Show then
             RADIO:SendCommand(idx)
@@ -327,6 +329,8 @@ hook.Add("PlayerBindPress", "TTTGHOSTDMBINDS", function(ply, bind, pressed)
         end
 
         return true
+    ]]--
+
     elseif string.find(bind, "zoom") and pressed then
         RADIO:ShowRadioCommands(not RADIO.Show)
 
@@ -420,8 +424,8 @@ hook.Add("Initialize", "Initialize_Ghost", function()
 
 		return trace
 	end
-	]]
-    --
+    ]]--
+
     local oldTraceLine = util.TraceLine
 
     function util.TraceLine(tbl)
