@@ -140,7 +140,7 @@ if CLIENT then
             local spc = 7 * self.scale -- space between bars
             -- health bar
             local health = math.max(0, client:Health())
-            self:DrawBar(nx, ty, bw, bh, Color(234, 41, 41), health / client:GetMaxHealth(), self.scale, string.upper(LANG.TryTranslation("hud_health")) .. ": " .. health)
+            self:DrawBar(nx, ty, bw, bh, Color(234, 41, 41), health / client:GetMaxHealth(), self.scale, "HEALTH" .. ": " .. health)
             -- ammo bar
             ty = ty + bh + spc
 
