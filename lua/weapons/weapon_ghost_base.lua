@@ -113,7 +113,7 @@ SWEP.IsDropped = false
 SWEP.DeploySpeed = 1.4
 SWEP.PrimaryAnim = ACT_VM_PRIMARYATTACK_SILENCED
 SWEP.ReloadAnim = ACT_VM_RELOAD
-AccessorFuncDT(SWEP, "ironsights", "Ironsights")
+AccessorFunc(SWEP, "ironsights", "Ironsights")
 SWEP.fingerprints = {}
 -- local sparkle = CLIENT and CreateConVar("ttt_crazy_sparks", "0", FCVAR_ARCHIVE)
 local crosshair_size = CreateConVar("ttt_crosshair_size", "1.0", FCVAR_ARCHIVE)
