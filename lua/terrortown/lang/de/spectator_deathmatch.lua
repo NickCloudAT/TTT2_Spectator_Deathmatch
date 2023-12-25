@@ -1,6 +1,7 @@
 local L = LANG.GetLanguageTableReference("de")
 -- HUD
 L["ttt2_spectator_deathmatch_name"] = "Geist"
+L["ttt2_spectator_deathmatch_health"] = "Leben"
 -- VGUI
 L["ttt2_spectator_deathmatch_text_1"] = "Zufällige Waffe"
 L["ttt2_spectator_deathmatch_text_2"] = "Speichern"
