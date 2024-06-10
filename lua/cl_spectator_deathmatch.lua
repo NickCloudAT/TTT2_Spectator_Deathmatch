@@ -35,14 +35,8 @@ end)
 net.Receive("SpecDM_Ghost", function()
     local enabled = net.ReadUInt(1) == 1
 
-    if enabled then
-        TIPS.Hide()
-
-        if SpecDM.MuteAlive then
-            RunConsoleCommand("ttt_mute_team", TEAM_TERROR)
-        end
-    else
-        TIPS:Show()
+    if enabled and SpecDM.MuteAlive then
+        RunConsoleCommand("ttt_mute_team", TEAM_TERROR)
     end
 
     SpecDM.UpdatePartDrawing(enabled)
@@ -283,17 +277,13 @@ hook.Add("PlayerBindPress", "TTTGHOSTDMBINDS", function(ply, bind, pressed)
     if not IsValid(ply) then return end
 
     if bind == "invnext" and pressed then
-        if ply:IsSpec() and not (ply.IsGhost and ply:IsGhost()) then
-            TIPS.Next()
-        else
+        if not ply:IsSpec() or (ply.IsGhost and ply:IsGhost()) then
             WSWITCH:SelectNext()
         end
 
         return true
     elseif bind == "invprev" and pressed then
-        if ply:IsSpec() and not (ply.IsGhost and ply:IsGhost()) then
-            TIPS.Prev()
-        else
+        if not ply:IsSpec() or (ply.IsGhost and ply:IsGhost()) then
             WSWITCH:SelectPrev()
         end
 
@@ -317,7 +307,7 @@ hook.Add("PlayerBindPress", "TTTGHOSTDMBINDS", function(ply, bind, pressed)
 
             return true
         end
-	
+
     --[[
     elseif string.sub(bind, 1, 4) == "slot" and pressed then
         local idx = tonumber(string.sub(bind, 5, -1)) or 1

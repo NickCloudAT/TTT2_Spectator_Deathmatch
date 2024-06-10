@@ -98,7 +98,7 @@ if CLIENT then
         self:DrawBg(x2, y2, w2, h2, self.basecolor)
         -- draw left panel
         local c
-        c = Color(100, 100, 100, 200)
+        c = COLOR_SPEC
         surface.SetDrawColor(clr(c))
         surface.DrawRect(x2, y2, self.lpw, h2)
         local ry = y2 + self.lpw * 0.5
@@ -158,8 +158,8 @@ if CLIENT then
             ty = ty + bh + spc
 
             -- fix 4 for sprint bar
-            if GetGlobalBool("ttt2_sprint_enabled", true) then
-                self:DrawBar(nx, ty, bw, sbh, color_sprint, client.sprintProgress, t_scale, "")
+            if SPRINT.convars.enabled:GetBool() then
+                self:DrawBar(nx, ty, bw, sbh, color_sprint, client:GetSprintStamina(), t_scale, "")
             end
         end
 
