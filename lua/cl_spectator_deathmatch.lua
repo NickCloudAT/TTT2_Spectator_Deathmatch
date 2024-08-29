@@ -301,14 +301,14 @@ hook.Add("PlayerBindPress", "TTTGHOSTDMBINDS", function(ply, bind, pressed)
         RunConsoleCommand("tvog", "0")
 
         return true
+
+    --[[
     elseif bind == "+use" and pressed then
         if ply:IsSpec() then
             RunConsoleCommand("ttt_spec_use")
 
             return true
         end
-
-    --[[
     elseif string.sub(bind, 1, 4) == "slot" and pressed then
         local idx = tonumber(string.sub(bind, 5, -1)) or 1
 
