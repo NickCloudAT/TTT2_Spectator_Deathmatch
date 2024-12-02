@@ -419,6 +419,7 @@ hook.Add("Initialize", "Initialize_Ghost", function()
     local oldTraceLine = util.TraceLine
 
     function util.TraceLine(tbl)
+        if not IsValid(LocalPlayer()) then return end
         local plyghost = LocalPlayer():IsGhost()
         if not istable(tbl) or (plyghost and showalive:GetBool()) then return oldTraceLine(tbl) end
         local filt = tbl.filter
