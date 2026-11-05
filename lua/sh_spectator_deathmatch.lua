@@ -57,6 +57,12 @@ end)
 
 hook.Add("Move", "Move_Ghost", function(ply, mv)
     if ply:IsGhost() then
+        -- TTT2 applies the regular speed multiplier before this hook. Ghosts
+        -- are not terrorists, so their multiplier is not recalculated and
+        -- can still contain the ironsight penalty from before their death.
+        local previousSpeedMultiplier = ply:GetSpeedMultiplier()
+        ply.speedModifier = 1
+
         local basemul = 1
         local slowed = false
         local wep = ply:GetActiveWeapon()
@@ -71,6 +77,13 @@ hook.Add("Move", "Move_Ghost", function(ply, mv)
 
         local mul = hook.Call("TTTPlayerSpeedModifier", GAMEMODE, ply, slowed, mv, noLag) or 1
         mul = basemul * mul / noLag[1] * 1.5
+
+        -- TTT2 may already have applied the previous speed multiplier in its
+        -- Move hook. Remove it before applying the current Ghost multiplier.
+        if previousSpeedMultiplier ~= 0 then
+            mul = mul / previousSpeedMultiplier
+        end
+
         mv:SetMaxClientSpeed(mv:GetMaxClientSpeed() * mul)
         mv:SetMaxSpeed(mv:GetMaxSpeed() * mul)
     end
