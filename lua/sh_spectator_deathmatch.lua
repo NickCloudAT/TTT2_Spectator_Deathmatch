@@ -76,7 +76,7 @@ hook.Add("Move", "Move_Ghost", function(ply, mv)
         local noLag = {1}
 
         local mul = hook.Call("TTTPlayerSpeedModifier", GAMEMODE, ply, slowed, mv, noLag) or 1
-        mul = basemul * mul / noLag[1] * 1.5
+        mul = basemul * mul * 1.5
 
         -- TTT2 may already have applied the previous speed multiplier in its
         -- Move hook. Remove it before applying the current Ghost multiplier.
